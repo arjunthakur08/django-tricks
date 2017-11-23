@@ -1,7 +1,7 @@
 # django-tricks
 > This repository is created to save you from some of the common problems that occur during the development of a django app.
 
-* [When changing ```DEBUG-=-True```-to-```DEBUG-=-False``` in settings.py file](#When-changing-```DEBUG-=-True```-to-```DEBUG-=-False```-in-settings.py-file) 
+* [When changing ```DEBUG = True```to ```DEBUG = False``` in settings.py file](#when-changing-debug--true-to-debug--false-in-settingspy-file) 
 ## When changing ```DEBUG = True``` to ```DEBUG = False``` in settings.py file 
   First things first. **DEBUG** allows us to see the errors and traceback them. Now if our app raise an exception, django shows a detailed **trackeback** which includes "almost" every information related to our django environmnet and currently defined settings in settings.py file, except some sensitive information. With **DEBUG** turned on, the developer can see the reason of the error and remove them. It's only good during development, not production. 
 When you change the settings from ```DEBUG = True``` to ```DEBUG = False``` in settings.py file, there are things to be taken care of which are:
