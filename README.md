@@ -11,9 +11,10 @@ When you change the settings from ```DEBUG = True``` to ```DEBUG = False``` in s
         'example.com',
     ]
 ```
-  * Django doesn't take care of your static files with DEBUG turned off, but it allows the web server you chose for production, to take care of the static files for you. See [here](https://docs.djangoproject.com/en/1.11/ref/settings/#debug)
-  * If you still want to load the static files with DEBUG turned off (```DEBUG = False```), run the following command to run the development server in insecure mode:
+  * Django **doesn't take care of your static files with DEBUG turned off**, but it allows the web server you chose for production, to take care of the static files for you. See [here](https://docs.djangoproject.com/en/1.11/ref/settings/#debug)
+  * If you still want to load the static files with DEBUG turned off or ```DEBUG = False``` (for testing purpose), run the following command to run the **development server in insecure mode**:
   ```console
   python manage.py runserver --insecure
   ```
+  * For more on deploying the static files when in production, click [here](https://docs.djangoproject.com/en/1.11/howto/static-files/deployment/#deploying-static-files) 
   #### Warning - Never ever deploy a site or a django app into production with DEBUG turned on or ```DEBUG =True```.
