@@ -69,4 +69,4 @@ When you change the settings from ```DEBUG = True``` to ```DEBUG = False``` in s
         - [x] ```system.webServer```
         - [x] ```rewrite```
         - [x] ```rules```
-      * And then paste the code-block of ``` <rule></rule> ``` **\("rule" without an \'s\'\)** between the ``` <rules></rules> ``` **("rules" with an \'s\'\)** code-blcok 
+      * And then paste the code-block of ``` <rule></rule> ``` **\("rule" without an \'s\'\)** between the ``` <rules></rules> ``` **("rules" with an \'s\'\)** code-block.
