@@ -6,7 +6,7 @@
 # Bonus Tricks
 > Some of the hacks you might not know
 
-* [Automatically redirecting from HTTP to HTTPS](#Automatically-redirecting-from-HTTP-to-HTTPS)
+* [Automatically redirecting from HTTP to HTTPS](#automatically-redirecting-from-http-to-https)
 
 ## When changing ```DEBUG = True``` to ```DEBUG = False``` in settings.py file 
   First things first. **DEBUG** allows us to see the errors and traceback them. Now if our app raise an exception, django shows a detailed **trackeback** which includes "almost" every information related to our django environmnet and currently defined settings in settings.py file, except some sensitive information. With **DEBUG** turned on, the developer can see the reason of the error and remove them. It's only good during development, not production. 
