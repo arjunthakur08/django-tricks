@@ -70,3 +70,26 @@ When you change the settings from ```DEBUG = True``` to ```DEBUG = False``` in s
         - [x] ```rewrite```
         - [x] ```rules```
       * And then paste the code-block of ``` <rule></rule> ``` **\("rule" without an \'s\'\)** between the ``` <rules></rules> ``` **("rules" with an \'s\'\)** code-block.
+
+
+## Force redirecting URLs.
+
+If you know already how to automatically redirect HTTP to HTTPS then it is a lot easier for you. If not, then check it out [here](#automatically-redirecting-from-http-to-https) and then come back.
+
+  * ### Force redirecting your site and all its links from "www.example.com" > "example.com
+Just put on the following code after ```RewriteEngine on``` and you are all done:
+
+```console
+RewriteCond %{HTTP_HOST} ^www\.example.com\.com$
+RewriteRule ^/?$ "https\:\/\/example\.com\/" [R=301,L]
+```
+#### Note: Don't Forget to replace the "example" and "com" with your website's name and clear your cache (sometimes clearing the cache is required)
+
+  * ### Force redirecting your site and all its links from "example.com" > "www.example.com
+Put on the following code after ```RewriteEngine on```:
+
+```console
+RewriteCond %{HTTP_HOST} !^www.example.com$ [NC]
+RewriteRule ^(.*)$ http://www.example.com/$1 [L,R=301]
+```
+#### Note: Don't Forget to replace the "example" and "com" with your website's name and clear your cache (sometimes clearing the cache is required)
