@@ -65,8 +65,8 @@ When you change the settings from ```DEBUG = True``` to ```DEBUG = False``` in s
     ```
     * If there is an existing file, then just edit it. But **remember** these two things:
       * Make sure you have the following tags or code blocks in that file:
-        -[x] ```configuration```
-        -[x] ```system.webServer```
-        -[x] ```rewrite```
-        -[x] ```rules```
-      * And then paste the code-block of ``` <rule></rule> ``` \(rule without an \'s\'\) between the ``` <rules></rules> ``` (rules with an \'s\'\)code-blcok 
+        - [x] ```configuration```
+        - [x] ```system.webServer```
+        - [x] ```rewrite```
+        - [x] ```rules```
+      * And then paste the code-block of ``` <rule></rule> ``` \(rule without an \'s\'\) between the ``` <rules></rules> ``` (rules with an \'s\'\) code-blcok 
