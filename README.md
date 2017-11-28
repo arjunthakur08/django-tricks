@@ -2,7 +2,7 @@
 > This repository is created to save you from some of the common problems that occur during the development of a django app.
 
 * [When changing ```DEBUG = True```to ```DEBUG = False``` in settings.py file](#when-changing-debug--true-to-debug--false-in-settingspy-file)
-* [Handling Class-based view of django authentication system \(New in django 1.11+\)]()
+* [Handling Class-based view of django authentication system \(New in django 1.11+\)](#handling-class-based-view-of-djangos-authentication-system-new-in-django-111)
 
 # Bonus Tricks
 > Some of the hacks you might not know
