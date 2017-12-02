@@ -1,6 +1,7 @@
 # django-tricks
 > This repository is created to save you from some of the common problems that occur during the development of a django app.
 
+* [Creating Virtual Environment]()
 * [When changing ```DEBUG = True```to ```DEBUG = False``` in settings.py file](#when-changing-debug--true-to-debug--false-in-settingspy-file)
 * [Handling Class-based view of django authentication system \(New in django 1.11+\)](#handling-class-based-view-of-djangos-authentication-system-new-in-django-111)
 
@@ -10,7 +11,58 @@
 * [Automatically redirecting from HTTP to HTTPS](#automatically-redirecting-from-http-to-https)
 * [Force redirecting URLs](#force-redirecting-urls)
 
+## Working with Virtual Environment
+
+  **Virtual Environment** - a package (a functionality ) that allows us to **have different versions for the same package**. Now you must be thinking what would I do with different versions of django. Take [django](https://www.djangoproject.com) as an example, [django](https://www.djangoproject.com) release its new version after a very short time. Now you don't wanna mess up your current project by installing the new version. Also you want to work with the new functionalities included in the new django version, so how can you have both version of django. That's where virtualenv comes to play. It **helps you install different versions of same python packages** in one machine. You can even **have ```python 2.x``` and ```python 3.x``` in the same machine** using **virtualenv**. 
+  Now that you know what kind of power it possess, lets install virtual environment firstly before creating one. Make sure you have [python](https://www.python.org/downloads/) and [pip](https://pip.pypa.io/en/stable/installing/) installed already. And then, just use the following command and you are good to go:
+```console
+pip install virtualenv
+```
+
+Now to create a virtual environment, firstly create a new directory to have all the virtual environments in one place and change the current working directory using command-line/terminal. 
+
+**Windows User:**
+```console
+md VEnvironments
+cd VEnvironments
+```
+**Mac/Linux User:**
+```console
+mkdir VEnvironments && cd VEnvironments
+```
+
+### Create a virtual environment for your project in the /VEnvironments/ directory
+```console
+virtualenv virtual_environment_name
+```
+
+
+### Activating the project's virtual environment
+**Windows User**
+```console
+ virtual_environment_name\scripts\activate
+```
+**Mac/Linux User**
+```console
+source virtual_environment_name/scripts/activate
+```
+and you will see something like this in the command-line/terminal ```(virtual_environment_name)``` indicating the virtual environment is activated and you can install any version of any packages as your need without messing up the main packages on your local machine outside the virtual environment.
+
+
+### Deactivating the virtual environment
+When you don't want to use the virtual environment, just run the following command and it will kind of "log you out" of the virtual environment:
+```console
+deactivate
+```
+
+
+---------------------------------------------------------------------------------------------------------
+
+
+
+
 ## When changing ```DEBUG = True``` to ```DEBUG = False``` in settings.py file 
+
   First things first. **DEBUG** allows us to see the errors and traceback them. Now if our app raise an exception, django shows a detailed **trackeback** which includes "almost" every information related to our django environmnet and currently defined settings in settings.py file, except some sensitive information. With **DEBUG** turned on, the developer can see the reason of the error and remove them. It's only good during development, not production. 
 When you change the settings from ```DEBUG = True``` to ```DEBUG = False``` in settings.py file, there are things to be taken care of which are:
   * You have to set **ALLOWED_HOSTS** setting, so that your app don't return **"Bad Request (400)"** error on requesting. For example:
