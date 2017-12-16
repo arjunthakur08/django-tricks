@@ -13,7 +13,7 @@
 
 ## Working with Virtual Environment
 
-  **Virtual Environment** - a package (a functionality ) that allows us to **have different versions for the same package**. Now you must be thinking what would I do with different versions of django. Take [django](https://www.djangoproject.com) as an example, [django](https://www.djangoproject.com) release its new version after a very short time. Now you don't wanna mess up your current project by installing the new version. Also you want to work with the new functionalities included in the new django version, so how can you have both version of django. That's where virtualenv comes to play. It **helps you install different versions of same python packages** in one machine. You can even **have ```python 2.x``` and ```python 3.x``` in the same machine** using **virtualenv**. 
+  **Virtual Environment** - a package (or a functionality) that allows us to **have different versions for the same python package**. Now you must be thinking, what would I do with different versions of same python packages. Take [django](https://www.djangoproject.com) as an example, [django](https://www.djangoproject.com) release its new version after a very short time. Now you don't wanna mess up your current project by installing the new version. Also you want to understand and work with the new functionalities, included in the new django version, so that, in future, you can upgrade your project to the newer version of django. So how can you have both version of django? That's where [virtualenv](https://pypi.python.org/pypi/virtualenv#downloads) comes to play. It is a python package that **helps you to install different versions of the same python packages** in one machine. You can even **have ```python 2.x``` and ```python 3.x``` in the same machine** using **virtualenv**. 
   Now that you know what kind of power it possess, lets install virtual environment firstly before creating one. Make sure you have [python](https://www.python.org/downloads/) and [pip](https://pip.pypa.io/en/stable/installing/) installed already. And then, just use the following command and you are good to go:
 ```console
 pip install virtualenv
@@ -31,13 +31,14 @@ cd VEnvironments
 mkdir VEnvironments && cd VEnvironments
 ```
 
-### Create a virtual environment for your project in the /VEnvironments/ directory
+**Create a virtual environment**: Create a virtual envrionment for your project in the '/VEnvironments/' directory using following command:
 ```console
 virtualenv virtual_environment_name
 ```
 
 
-### Activating the project's virtual environment
+**Activate the virtual environment**: Activating the virtual environment will make a **copy of the python 2.x or python 3.x**, which is installed in your local machine **but** of outside the virtual environment. When the virtual environment is activated, you can install any python packages, according to your need. You can even change the version of python. 
+
 **Windows User**
 ```console
  virtual_environment_name\scripts\activate
@@ -49,11 +50,13 @@ source virtual_environment_name/scripts/activate
 and you will see something like this in the command-line/terminal ```(virtual_environment_name)``` indicating the virtual environment is activated and you can install any version of any packages as your need without messing up the main packages on your local machine outside the virtual environment.
 
 
-### Deactivating the virtual environment
-When you don't want to use the virtual environment, just run the following command and it will kind of "log you out" of the virtual environment:
+**Deactivate the virtual environment**: When you don't want to use the virtual environment, just run the following command and it will kind of "log you out" of the virtual environment:
 ```console
 deactivate
 ```
+#### More on virtualenv
+- [Virualenv](https://pypi.python.org/pypi/virtualenv)
+- [Virtualenv Docs](https://virtualenv.pypa.io/en/stable/)
 
 
 ---------------------------------------------------------------------------------------------------------
@@ -65,10 +68,10 @@ deactivate
 
   First things first. **DEBUG** allows us to see the errors and traceback them. Now if our app raise an exception, django shows a detailed **trackeback** which includes "almost" every information related to our django environmnet and currently defined settings in settings.py file, except some sensitive information. With **DEBUG** turned on, the developer can see the reason of the error and remove them. It's only good during development, not production. 
 When you change the settings from ```DEBUG = True``` to ```DEBUG = False``` in settings.py file, there are things to be taken care of which are:
-  * You have to set **ALLOWED_HOSTS** setting, so that your app don't return **"Bad Request (400)"** error on requesting. For example:
+  * You have to set **ALLOWED_HOSTS** setting, so that your app don't return **Bad Request (400)** error on requesting. For example:
   ```python
     ALLOWED_HOSTS = [
-        'example.com',
+        'example.dev',
     ]
 ```
   * Django **doesn't take care of your static files with DEBUG turned off**, but it allows the web server you chose for production, to take care of the static files for you. See [here](https://docs.djangoproject.com/en/1.11/ref/settings/#debug)
@@ -89,7 +92,7 @@ When you change the settings from ```DEBUG = True``` to ```DEBUG = False``` in s
 
 ## Handling Class-based view of django's authentication system (New in django 1.11+)
 
-Most of the people \(usually beginners\) find it really hard to use the django's built-in authentication system since the release of **django version 1.11** due to the **class-based view for the authentication system included in the new django 1.11+**. I personally waste a half day for googling the errors I wan encountering. But then, I realised it is time for a change. So I decided to dive into the [django documentation](https://docs.djangoproject.com/en/1.11/) and had a look in the [authentication views](https://docs.djangoproject.com/en/1.11/topics/auth/default/#all-authentication-views). What I realized is that, the default auth views of **django have many things set to default**, which gives us some errors, one of which is like this:
+Most of the people \(usually beginners\) find it really hard to use the django's built-in authentication system since the release of **django version 1.11** due to the **class-based view for the authentication system included in the new django 1.11+**. I personally waste a half day for googling the errors I was encountering. But then, I realised it is time for a change. So I decided to dive into the [django documentation](https://docs.djangoproject.com/en/1.11/) and had a look in the [authentication views](https://docs.djangoproject.com/en/1.11/topics/auth/default/#all-authentication-views). What I realized is that, the default auth views of **django have many things set to default**, which gives us some errors, one of which is like this:
 ```
 NoReverseMatch at /socialNetwork/password_reset/
 Reverse for 'password_reset_done' not found. 'password_reset_done' is not a valid view function or pattern name.
@@ -97,7 +100,7 @@ Reverse for 'password_reset_done' not found. 'password_reset_done' is not a vali
 All we need to successfully implement the django's built-in authentication system, is to **override the default values** with our values.
 
 ### Requirements:
-The following templates should be there in your apps' **templates** folder, (e.g. - ```/app_name/templates/app_name/``` folder) 
+The following templates should be there in your app's **templates** folder, (e.g. - ```/app_name/templates/app_name/``` folder) 
   * password_reset_form.html
   * password_reset_done.html
   * password_reset_email.html
@@ -105,7 +108,7 @@ The following templates should be there in your apps' **templates** folder, (e.g
   * password_reset_complete.html
   * password_reset_subject.txt
   
-  #### \<\/\> for password_reset_form.html
+  #### CODE for password_reset_form.html
   ```html
   {% block content %}
   <h3>Forgot password</h3>
@@ -117,7 +120,7 @@ The following templates should be there in your apps' **templates** folder, (e.g
   {% endblock %}
   ```
   
-  #### \<\/\> for password_reset_done.html
+  #### CODE for password_reset_done.html
   ```html
   {% block content %}
   <h3>Password Reset Email Sent</h3>
@@ -128,7 +131,7 @@ The following templates should be there in your apps' **templates** folder, (e.g
   {% endblock %}
   ```
 
-  #### \<\/\> for password_reset_email.html
+  #### CODE for password_reset_email.html
   ```html
   {% autoescape off %}
   
@@ -147,7 +150,7 @@ The following templates should be there in your apps' **templates** folder, (e.g
   
   ```
   
-  #### \<\/\> for password_reset_confirm.html
+  #### CODE for password_reset_confirm.html
   ```html
   {% block content %}
     {% if validlink %}
@@ -163,19 +166,19 @@ The following templates should be there in your apps' **templates** folder, (e.g
   {% endblock %}
   ```
 
-  #### \<\/\> for password_reset_complete.html
+  #### CODE for password_reset_complete.html
   ```html
   {% block content %}
     Your new password has been successfully set. Now you can access your account using your new password by <a href="{% url 'socialNetwork:login' %}">logging in</a>.
   {% endblock %}
   ```
   
-   #### \<\/\> for password_reset_subject.txt
+   #### CODE for password_reset_subject.txt
   ```console
   Social Network : Request for resetting the password
   ```
   
-#### \<\/\> for socialNetwork urls (urls.py)  
+#### CODE for socialNetwork urls (urls.py)  
 
 ```python
 from django.conf.urls import url, include
