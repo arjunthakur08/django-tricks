@@ -86,7 +86,7 @@ When you change the settings from ```DEBUG = True``` to ```DEBUG = False``` in s
   python manage.py runserver --insecure
   ```
   * For more on deploying the static files when in production, click [here](https://docs.djangoproject.com/en/1.11/howto/static-files/deployment/#deploying-static-files) 
-  #### :warning: _Warning_ - _Never-ever_ deploy a site or a django app into production with DEBUG turned on or ```DEBUG =True```.
+  #### _Warning_ :warning: - _Never-ever_ deploy a site or a django app into production with DEBUG turned on or ```DEBUG =True```.
 
 
 
