@@ -1,17 +1,18 @@
-# django-tricks
+# Django Trickster :bulb:
 > This repository is created to save you from some of the common problems that occur during the development of a django app.
 
-* [Creating Virtual Environment](#working-with-virtual-environment)
+* [Creating Virtual Environment](#creating-virtual-environment)
+* [Setting Up the PostgreSQL DB locally](#setting-up-the-postgresql-db)
 * [When changing ```DEBUG = True```to ```DEBUG = False``` in settings.py file](#when-changing-debug--true-to-debug--false-in-settingspy-file)
 * [Handling Class-based view of django authentication system \(New in django 1.11+\)](#handling-class-based-view-of-djangos-authentication-system-new-in-django-111)
 
-# Bonus Tricks
+# Bonus Tricks :gift:
 > Some of the hacks you might not know
 
 * [Automatically redirecting from HTTP to HTTPS](#automatically-redirecting-from-http-to-https)
 * [Force redirecting URLs](#force-redirecting-urls)
 
-## Working with Virtual Environment
+# Creating Virtual Environment
 
   **Virtual Environment** - a package (or a functionality) that allows us to **have different versions for the same python package**. Now you must be thinking, what would I do with different versions of same python packages. Take [django](https://www.djangoproject.com) as an example, [django](https://www.djangoproject.com) release its new version after a very short time. Now you don't wanna mess up your current project by installing the new version. Also you want to understand and work with the new functionalities, included in the new django version, so that, in future, you can upgrade your project to the newer version of django. So how can you have both version of django? That's where [virtualenv](https://pypi.python.org/pypi/virtualenv#downloads) comes to play. It is a python package that **helps you to install different versions of the same python packages** in one machine. You can even **have ```python 2.x``` and ```python 3.x``` in the same machine** using **virtualenv**. 
   Now that you know what kind of power it possess, lets install virtual environment firstly before creating one. Make sure you have [python](https://www.python.org/downloads/) and [pip](https://pip.pypa.io/en/stable/installing/) installed already. And then, just use the following command and you are good to go:
@@ -21,36 +22,36 @@ pip install virtualenv
 
 Now to create a virtual environment, firstly create a new directory to have all the virtual environments in one place and change the current working directory using command-line/terminal. 
 
-**Windows User:**
+***Windows User:***
 ```console
 md VEnvironments
 cd VEnvironments
 ```
-**Mac/Linux User:**
+***Mac/Linux User:***
 ```console
 mkdir VEnvironments && cd VEnvironments
 ```
 
-**Create a virtual environment**: Create a virtual envrionment for your project in the '/VEnvironments/' directory using following command:
+***Create a virtual environment*** : Create a virtual envrionment for your project in the '/VEnvironments/' directory using following command:
 ```console
 virtualenv virtual_environment_name
 ```
 
 
-**Activate the virtual environment**: Activating the virtual environment will make a **copy of the python 2.x or python 3.x**, which is installed in your local machine **but** of outside the virtual environment. When the virtual environment is activated, you can install any python packages, according to your need. You can even change the version of python. 
+***Activate the virtual environment*** : Activating the virtual environment will make a **copy of the python 2.x or python 3.x**, which is installed in your local machine **but** of outside the virtual environment. When the virtual environment is activated, you can install any python packages, according to your need. You can even change the version of python. 
 
-**Windows User**
+***Windows User***
 ```console
  virtual_environment_name\scripts\activate
 ```
-**Mac/Linux User**
+***Mac/Linux User***
 ```console
 source virtual_environment_name/scripts/activate
 ```
 and you will see something like this in the command-line/terminal ```(virtual_environment_name)``` indicating the virtual environment is activated and you can install any version of any packages as your need without messing up the main packages on your local machine outside the virtual environment.
 
 
-**Deactivate the virtual environment**: When you don't want to use the virtual environment, just run the following command and it will kind of "log you out" of the virtual environment:
+***Deactivate the virtual environment***: When you don't want to use the virtual environment, just run the following command and it will kind of "log you out" of the virtual environment:
 ```console
 deactivate
 ```
@@ -62,25 +63,30 @@ deactivate
 ---------------------------------------------------------------------------------------------------------
 
 
+# Setting Up the PostgreSQL DB
 
+> Local Setup of  PostgreSQL Database
 
-## When changing ```DEBUG = True``` to ```DEBUG = False``` in settings.py file 
+---------------------------------------------------------------------------------------------------------
+
+# When changing ```DEBUG = True``` to ```DEBUG = False``` in settings.py file 
+> Only change ```DEBUG = False``` when your site is in _PRODUCTION_ 
 
   First things first. **DEBUG** allows us to see the errors and traceback them. Now if our app raise an exception, django shows a detailed **trackeback** which includes "almost" every information related to our django environmnet and currently defined settings in settings.py file, except some sensitive information. With **DEBUG** turned on, the developer can see the reason of the error and remove them. It's only good during development, not production. 
 When you change the settings from ```DEBUG = True``` to ```DEBUG = False``` in settings.py file, there are things to be taken care of which are:
-  * You have to set **ALLOWED_HOSTS** setting, so that your app don't return **Bad Request (400)** error on requesting. For example:
+  * You have to set **ALLOWED_HOSTS** setting, so that your app don't return **_Bad Request_ (400)** error on requesting. For example:
   ```python
     ALLOWED_HOSTS = [
         'example.dev',
     ]
 ```
-  * Django **doesn't take care of your static files with DEBUG turned off**, but it allows the web server you chose for production, to take care of the static files for you. See [here](https://docs.djangoproject.com/en/1.11/ref/settings/#debug)
-  * If you still want to load the static files with DEBUG turned off or ```DEBUG = False``` (for testing purpose), run the following command to run the **development server in insecure mode**:
+  * Django **_doesn't take care of your static files with DEBUG turned off_**, but it allows the web server you chose for production, to take care of the static files for you. See [here](https://docs.djangoproject.com/en/1.11/ref/settings/#debug)
+  * If you still want to load the static files with DEBUG turned off or ```DEBUG = False``` (for testing purpose), run the following command to run the **development server in _insecure mode_**:
   ```console
   python manage.py runserver --insecure
   ```
   * For more on deploying the static files when in production, click [here](https://docs.djangoproject.com/en/1.11/howto/static-files/deployment/#deploying-static-files) 
-  #### Warning - Never ever deploy a site or a django app into production with DEBUG turned on or ```DEBUG =True```.
+  #### :warning: _Warning_ - _Never-ever_ deploy a site or a django app into production with DEBUG turned on or ```DEBUG =True```.
 
 
 
@@ -90,16 +96,16 @@ When you change the settings from ```DEBUG = True``` to ```DEBUG = False``` in s
 
 
 
-## Handling Class-based view of django's authentication system (New in django 1.11+)
+# Handling Class-based view of django's authentication system (New in django 1.11+)
 
-Most of the people \(usually beginners\) find it really hard to use the django's built-in authentication system since the release of **django version 1.11** due to the **class-based view for the authentication system included in the new django 1.11+**. I personally waste a half day for googling the errors I was encountering. But then, I realised it is time for a change. So I decided to dive into the [django documentation](https://docs.djangoproject.com/en/1.11/) and had a look in the [authentication views](https://docs.djangoproject.com/en/1.11/topics/auth/default/#all-authentication-views). What I realized is that, the default auth views of **django have many things set to default**, which gives us some errors, one of which is like this:
+Most of the people \(usually beginners\) find it really hard to use the django's built-in authentication system since the release of **_django version 1.11_** due to the **_class-based view_ for the authentication system included in the new django 1.11+**. I personally waste a half day for googling the errors I was encountering. But then, I realised it is time for a change. So I decided to dive into the [django documentation](https://docs.djangoproject.com/en/1.11/) and had a look in the [authentication views](https://docs.djangoproject.com/en/1.11/topics/auth/default/#all-authentication-views). What I realized is that, the default auth views of **django have many things set to default**, which gives us some errors, one of which is like this:
 ```
 NoReverseMatch at /socialNetwork/password_reset/
 Reverse for 'password_reset_done' not found. 'password_reset_done' is not a valid view function or pattern name.
 ```
 All we need to successfully implement the django's built-in authentication system, is to **override the default values** with our values.
 
-### Requirements:
+### _Requirements_:
 The following templates should be there in your app's **templates** folder, (e.g. - ```/app_name/templates/app_name/``` folder) 
   * password_reset_form.html
   * password_reset_done.html
@@ -239,7 +245,7 @@ urlpatterns = [
 
 ```
 
-#### Note : See the comments in the urls.py for the default values . For more details, dive into the [documentation](https://docs.djangoproject.com/en/1.11/topics/auth/default/#all-authentication-views) or directly in the [django/contib/auth/views.py file](https://github.com/django/django/blob/master/django/contrib/auth/views.py)
+#### Note :memo: : See the comments in the urls.py for the default values . For more details, dive into the [documentation](https://docs.djangoproject.com/en/1.11/topics/auth/default/#all-authentication-views) or directly in the [django/contib/auth/views.py file](https://github.com/django/django/blob/master/django/contrib/auth/views.py)
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
@@ -247,7 +253,9 @@ urlpatterns = [
 
 
 
-## Automatically redirecting from HTTP to HTTPS  
+# Automatically redirecting from HTTP to HTTPS  
+> Only do this if your site has SSL certificate
+
   Before we get started with that, you should have a basic knowledge of SSL. Have you ever seen the **SECURE or LOCK sign** in the address bar for some or most of the websites such as [www.google.com](https://www.google.com) or [github.com](https://github.com). It looks like this:
   
   ![ssl](https://user-images.githubusercontent.com/24960159/33201015-dad1685a-d11c-11e7-8987-d01c0be2c6eb.png)
@@ -284,7 +292,7 @@ urlpatterns = [
     </system.webServer>
     </configuration>
     ```
-    * If there is an existing file, then just edit it. But **remember** these two things:
+    * If there is an existing file, then just edit it. But **_remember_** these two things:
       * Make sure you have the following tags or code blocks in that file:
         - [x] ```configuration```
         - [x] ```system.webServer```
@@ -298,24 +306,24 @@ urlpatterns = [
 
 
 
-## Force redirecting URLs.
+# Force redirecting URLs.
 
-If you know already how to automatically redirect HTTP to HTTPS then it is a lot easier for you. If not, then check it out [here](#automatically-redirecting-from-http-to-https) and then come back.
+If you know already how to **_automatically redirect HTTP to HTTPS_** then it is a lot easier for you. If not, then check it out **[here](#automatically-redirecting-from-http-to-https)** and then come back.
 
-  * ### Force redirecting your site and all its links from "www.example.com" > "example.com
+  * ### Force redirecting your site and all its links from www.example.com :arrow_right: example.com
 Just put on the following code after ```RewriteEngine on``` and you are all done:
 
 ```console
 RewriteCond %{HTTP_HOST} ^www\.example.com\.com$
 RewriteRule ^/?$ "https\:\/\/example\.com\/" [R=301,L]
 ```
-#### Note: Don't Forget to replace the "example" and "com" with your website's name and clear your cache (sometimes clearing the cache is required)
+#### Note :memo: : Don't Forget to replace the "example" and "com" with your website's name and clear your cache (sometimes clearing the cache is required)
 
-  * ### Force redirecting your site and all its links from "example.com" > "www.example.com
+  * ### Force redirecting your site and all its links from example.com :arrow_right: www.example.com
 Put on the following code after ```RewriteEngine on```:
 
 ```console
 RewriteCond %{HTTP_HOST} !^www.example.com$ [NC]
 RewriteRule ^(.*)$ http://www.example.com/$1 [L,R=301]
 ```
-#### Note: Don't Forget to replace the "example" and "com" with your website's name and clear your cache (sometimes clearing the cache is required)
+#### Note :memo: : Don't Forget to replace the "example" and "com" with your website's name and clear your cache (sometimes clearing the cache is required)
