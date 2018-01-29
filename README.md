@@ -3,7 +3,7 @@
 
 * [Creating Virtual Environment](#creating-virtual-environment)
 * [Setting Up the PostgreSQL DB locally](#setting-up-the-postgresql-db)
-* [When changing ```DEBUG = True```to ```DEBUG = False``` in settings.py file](#when-changing-debug--true-to-debug--false-in-settingspy-file)
+* [When changing `DEBUG = True`to `DEBUG = False` in settings.py file](#when-changing-debug--true-to-debug--false-in-settingspy-file)
 * [Handling Class-based view of django authentication system \(New in django 1.11+\)](#handling-class-based-view-of-djangos-authentication-system-new-in-django-111)
 
 # Bonus Tricks :gift:
@@ -14,46 +14,46 @@
 
 # Creating Virtual Environment
 
-  **Virtual Environment** - a package (or a functionality) that allows us to **have different versions for the same python package**. Now you must be thinking, what would I do with different versions of same python packages. Take [django](https://www.djangoproject.com) as an example, [django](https://www.djangoproject.com) release its new version after a very short time. Now you don't wanna mess up your current project by installing the new version. Also you want to understand and work with the new functionalities, included in the new django version, so that, in future, you can upgrade your project to the newer version of django. So how can you have both version of django? That's where [virtualenv](https://pypi.python.org/pypi/virtualenv#downloads) comes to play. It is a python package that **helps you to install different versions of the same python packages** in one machine. You can even **have ```python 2.x``` and ```python 3.x``` in the same machine** using **virtualenv**. 
+  **Virtual Environment** - a package (or a functionality) that allows us to **have different versions for the same python package**. Now you must be thinking, what would I do with different versions of same python packages. Take [django](https://www.djangoproject.com) as an example, [django](https://www.djangoproject.com) release its new version after a very short time. Now you don't wanna mess up your current project by installing the new version. Also you want to understand and work with the new functionalities, included in the new django version, so that, in future, you can upgrade your project to the newer version of django. So how can you have both version of django? That's where [virtualenv](https://pypi.python.org/pypi/virtualenv#downloads) comes to play. It is a python package that **helps you to install different versions of the same python packages** in one machine. You can even **have `python 2.x` and `python 3.x` in the same machine** using **virtualenv**. 
   Now that you know what kind of power it possess, lets install virtual environment firstly before creating one. Make sure you have [python](https://www.python.org/downloads/) and [pip](https://pip.pypa.io/en/stable/installing/) installed already. And then, just use the following command and you are good to go:
 ```console
-pip install virtualenv
+$ pip install virtualenv
 ```
 
 Now to create a virtual environment, firstly create a new directory to have all the virtual environments in one place and change the current working directory using command-line/terminal. 
 
 ***Windows User:***
 ```console
-md VEnvironments
-cd VEnvironments
+$ md VEnvironments
+$ cd VEnvironments
 ```
 ***Mac/Linux User:***
 ```console
-mkdir VEnvironments && cd VEnvironments
+$ mkdir VEnvironments && cd VEnvironments
 ```
 
 ***Create a virtual environment*** : Create a virtual envrionment for your project in the '/VEnvironments/' directory using following command:
 ```console
-virtualenv virtual_environment_name
+$ virtualenv virtual_environment_name
 ```
 
 
-***Activate the virtual environment*** : Activating the virtual environment will make a **copy of the python 2.x or python 3.x**, which is installed in your local machine **but** of outside the virtual environment. When the virtual environment is activated, you can install any python packages, according to your need. You can even change the version of python. 
+***Activate the virtual environment*** : Activating the virtual environment will make a **copy of the python 2.x or python 3.x**, which is installed in your local machine **but** outside of the virtual environment. When the virtual environment is activated, you can install any python packages, according to your need. You can even change the version of python. 
 
 ***Windows User***
 ```console
- virtual_environment_name\scripts\activate
+ $ virtual_environment_name\scripts\activate
 ```
 ***Mac/Linux User***
 ```console
-source virtual_environment_name/scripts/activate
+$ source virtual_environment_name/scripts/activate
 ```
-and you will see something like this in the command-line/terminal ```(virtual_environment_name)``` indicating the virtual environment is activated and you can install any version of any packages as your need without messing up the main packages on your local machine outside the virtual environment.
+and you will see something like this in the command-line/terminal `virtual_environment_name)` indicating the virtual environment is activated and you can install any version of any packages as your need without messing up the main packages on your local machine outside the virtual environment.
 
 
 ***Deactivate the virtual environment***: When you don't want to use the virtual environment, just run the following command and it will kind of "log you out" of the virtual environment:
 ```console
-deactivate
+$ deactivate
 ```
 #### More on virtualenv
 - [Virualenv](https://pypi.python.org/pypi/virtualenv)
@@ -67,13 +67,47 @@ deactivate
 
 > Local Setup of  PostgreSQL Database
 
+## _Requirements_
+- [x] Django v1.11+
+- [x] PostgreSQL
+- [x] psycopg
+
+### Django
+If you already have **_pip_** installed, then installing [django](https://www.djangoproject.com) is really a matter of seconds. Just type the following command:
+```console
+$ pip install django
+``` 
+
+### PostgreSQL
+_PostgreSQL is an efficient, powerful and open-source object-relational database system._ Most of the developers recommend using PostgreSQL because of its features, open-source nature. Even [Instagram](https://www.instagram.com/) uses PostgreSQL with django. 
+
+**PostgreSQL Database** - [Download Here](https://www.postgresql.org/download/)
+
+The default user of the PostgreSQL database is `postgres` and default port is `5432`
+
+### psycopg
+[**_psycopg_**]() is an adapter for PostgreSQL _i.e._ it is needed to interact with the PostgreSQL Database. It helps in performing concurrent SQL operations such as `SELECT, INSERT, UPGRADE, DELETE` from the database etc.
+
+**Installing psycopg**
+
+Make sure you upgrade _pip_
+```console
+$ pip install -U pip  
+```
+and then type the following command to **install psycopg**
+```console
+$ pip install psycopg2
+```
+
+
+
 ---------------------------------------------------------------------------------------------------------
 
-# When changing ```DEBUG = True``` to ```DEBUG = False``` in settings.py file 
-> Only change ```DEBUG = False``` when your site is in _PRODUCTION_ 
+# When changing `DEBUG = True` to `DEBUG = False` in settings.py file 
+> Only change `DEBUG = False` when your site is in _PRODUCTION_ 
 
   First things first. **DEBUG** allows us to see the errors and traceback them. Now if our app raise an exception, django shows a detailed **trackeback** which includes "almost" every information related to our django environmnet and currently defined settings in settings.py file, except some sensitive information. With **DEBUG** turned on, the developer can see the reason of the error and remove them. It's only good during development, not production. 
-When you change the settings from ```DEBUG = True``` to ```DEBUG = False``` in settings.py file, there are things to be taken care of which are:
+When you change the settings from `DEBUG = True` to `DEBUG = False` in settings.py file, there are things to be taken care of which are:
   * You have to set **ALLOWED_HOSTS** setting, so that your app don't return **_Bad Request_ (400)** error on requesting. For example:
   ```python
     ALLOWED_HOSTS = [
@@ -81,12 +115,12 @@ When you change the settings from ```DEBUG = True``` to ```DEBUG = False``` in s
     ]
 ```
   * Django **_doesn't take care of your static files with DEBUG turned off_**, but it allows the web server you chose for production, to take care of the static files for you. See [here](https://docs.djangoproject.com/en/1.11/ref/settings/#debug)
-  * If you still want to load the static files with DEBUG turned off or ```DEBUG = False``` (for testing purpose), run the following command to run the **development server in _insecure mode_**:
+  * If you still want to load the static files with DEBUG turned off or `DEBUG = False` (for testing purpose), run the following command to run the **development server in _insecure mode_**:
   ```console
   python manage.py runserver --insecure
   ```
   * For more on deploying the static files when in production, click [here](https://docs.djangoproject.com/en/1.11/howto/static-files/deployment/#deploying-static-files) 
-  #### _Warning_ :warning: - _Never-ever_ deploy a site or a django app into production with DEBUG turned on or ```DEBUG =True```.
+  #### _Warning_ :warning: - _Never-ever_ deploy a site or a django app into production with DEBUG turned on or `DEBUG =True`.
 
 
 
@@ -106,7 +140,7 @@ Reverse for 'password_reset_done' not found. 'password_reset_done' is not a vali
 All we need to successfully implement the django's built-in authentication system, is to **override the default values** with our values.
 
 ### _Requirements_:
-The following templates should be there in your app's **templates** folder, (e.g. - ```/app_name/templates/app_name/``` folder) 
+The following templates should be there in your app's **templates** folder, (e.g. - `/app_name/templates/app_name/` folder) 
   * password_reset_form.html
   * password_reset_done.html
   * password_reset_email.html
@@ -270,8 +304,8 @@ urlpatterns = [
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     ```
     * If there is an existing file, then just edit it. But **remember** these two things:
-      * don't paste or type again ```RewriteEngine On```. It is only written one time. 
-      * And make sure of it, to paste the line initializing with ```RewriteCond``` and ```RewriteRule``` after ```RewriteEngine On``` 
+      * don't paste or type again `RewriteEngine On`. It is only written one time. 
+      * And make sure of it, to paste the line initializing with `RewriteCond` and `RewriteRule` after `RewriteEngine On` 
 
 * If you have Windows based hosting and Plesk, then the name of the file is **web.config** file. Don't know much about Plesk but the file must be on the same folder, where your website's Welcome page or Home Page's HTML file resides. Make sure every file is displaying including **Hidden Files**.
     * If the file doesn't exist there, then create one with the name **web.config** using the Plesk Control Panel. Now, edit the file and paste the following code without any editing:
@@ -294,11 +328,11 @@ urlpatterns = [
     ```
     * If there is an existing file, then just edit it. But **_remember_** these two things:
       * Make sure you have the following tags or code blocks in that file:
-        - [x] ```configuration```
-        - [x] ```system.webServer```
-        - [x] ```rewrite```
-        - [x] ```rules```
-      * And then paste the code-block of ``` <rule></rule> ``` **\("rule" without an \'s\'\)** between the ``` <rules></rules> ``` **("rules" with an \'s\'\)** code-block.
+        - [x] `configuration`
+        - [x] `system.webServer`
+        - [x] `rewrite`
+        - [x] `rules`
+      * And then paste the code-block of ` <rule> </rule> ` **_\(rule without an \'s\'\)_** between the ` <rules> </rules> ` **_("rules" with an \'s\'\)_** code-block.
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
@@ -311,7 +345,7 @@ urlpatterns = [
 If you know already how to **_automatically redirect HTTP to HTTPS_** then it is a lot easier for you. If not, then check it out **[here](#automatically-redirecting-from-http-to-https)** and then come back.
 
   * ### Force redirecting your site and all its links from www.example.com :arrow_right: example.com
-Just put on the following code after ```RewriteEngine on``` and you are all done:
+Just put on the following code after `RewriteEngine on` and you are all done:
 
 ```console
 RewriteCond %{HTTP_HOST} ^www\.example.com\.com$
@@ -320,7 +354,7 @@ RewriteRule ^/?$ "https\:\/\/example\.com\/" [R=301,L]
 #### Note :memo: : Don't Forget to replace the "example" and "com" with your website's name and clear your cache (sometimes clearing the cache is required)
 
   * ### Force redirecting your site and all its links from example.com :arrow_right: www.example.com
-Put on the following code after ```RewriteEngine on```:
+Put on the following code after `RewriteEngine on`:
 
 ```console
 RewriteCond %{HTTP_HOST} !^www.example.com$ [NC]
