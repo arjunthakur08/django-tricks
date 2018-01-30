@@ -141,15 +141,15 @@ DATABASES = {
 }
 ```
 
-Change it to the following:
+Change it to the following :arrows_clockwise: :
 
 ```python
 # PostgreSQL Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myDatabaseName',                 # Default Database = postgres
-        'USER': 'myDatabaseUser',             # Default User = postgres
+        'NAME': 'myDatabaseName',                 	# Enter the database name you created above 
+        'USER': 'myDatabaseUser',             		# Default User = postgres
         'PASSWORD': 'myPassword',             
         'HOST': '127.0.0.1',
         'PORT': '5432',
@@ -157,7 +157,7 @@ DATABASES = {
 }
 ```
 
-Thats's all, and you are set with the PostgreSQL.
+Thats's all, and you are set with the PostgreSQL. :thumbsup:
 
 ---------------------------------------------------------------------------------------------------------
 
