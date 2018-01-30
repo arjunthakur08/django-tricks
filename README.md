@@ -17,24 +17,24 @@
   **Virtual Environment** - a package (or a functionality) that allows us to **have different versions for the same python package**. Now you must be thinking, what would I do with different versions of same python packages. Take [django](https://www.djangoproject.com) as an example, [django](https://www.djangoproject.com) release its new version after a very short time. Now you don't wanna mess up your current project by installing the new version. Also you want to understand and work with the new functionalities, included in the new django version, so that, in future, you can upgrade your project to the newer version of django. So how can you have both version of django? That's where [virtualenv](https://pypi.python.org/pypi/virtualenv#downloads) comes to play. It is a python package that **helps you to install different versions of the same python packages** in one machine. You can even **have `python 2.x` and `python 3.x` in the same machine** using **virtualenv**. 
   Now that you know what kind of power it possess, lets install virtual environment firstly before creating one. Make sure you have [python](https://www.python.org/downloads/) and [pip](https://pip.pypa.io/en/stable/installing/) installed already. And then, just use the following command and you are good to go:
 ```console
-$ pip install virtualenv
+pip install virtualenv
 ```
 
 Now to create a virtual environment, firstly create a new directory to have all the virtual environments in one place and change the current working directory using command-line/terminal. 
 
 ***Windows User:***
 ```console
-$ md VEnvironments
-$ cd VEnvironments
+md VEnvironments
+cd VEnvironments
 ```
 ***Mac/Linux User:***
 ```console
-$ mkdir VEnvironments && cd VEnvironments
+mkdir VEnvironments && cd VEnvironments
 ```
 
 ***Create a virtual environment*** : Create a virtual envrionment for your project in the '/VEnvironments/' directory using following command:
 ```console
-$ virtualenv virtual_environment_name
+virtualenv virtual_environment_name
 ```
 
 
@@ -42,18 +42,18 @@ $ virtualenv virtual_environment_name
 
 ***Windows User***
 ```console
- $ virtual_environment_name\scripts\activate
+virtual_environment_name\scripts\activate
 ```
 ***Mac/Linux User***
 ```console
-$ source virtual_environment_name/scripts/activate
+source virtual_environment_name/scripts/activate
 ```
 and you will see something like this in the command-line/terminal `virtual_environment_name)` indicating the virtual environment is activated and you can install any version of any packages as your need without messing up the main packages on your local machine outside the virtual environment.
 
 
 ***Deactivate the virtual environment***: When you don't want to use the virtual environment, just run the following command and it will kind of "log you out" of the virtual environment:
 ```console
-$ deactivate
+deactivate
 ```
 #### More on virtualenv
 - [Virualenv](https://pypi.python.org/pypi/virtualenv)
@@ -75,7 +75,7 @@ $ deactivate
 ### Django
 If you already have **_pip_** installed, then installing [django](https://www.djangoproject.com) is really a matter of seconds. Just type the following command:
 ```console
-$ pip install django
+pip install django
 ``` 
 
 ### PostgreSQL
@@ -83,7 +83,7 @@ _PostgreSQL is an efficient, powerful and open-source object-relational database
 
 **PostgreSQL Database** - [Download Here](https://www.postgresql.org/download/)
 
-The default user of the PostgreSQL database is `postgres` and default port is `5432`
+**_Note_** :memo: : During installation of PostgreSQL, it will ask for a password. Set the password for it and do not forget it. The _default user_ of the PostgreSQL database is `postgres` and _default port_ is `5432`. It also creates a _default database_, which is `postgres`.
 
 ### psycopg
 [**_psycopg_**]() is an adapter for PostgreSQL _i.e._ it is needed to interact with the PostgreSQL Database. It helps in performing concurrent SQL operations such as `SELECT, INSERT, UPGRADE, DELETE` from the database etc.
@@ -92,14 +92,72 @@ The default user of the PostgreSQL database is `postgres` and default port is `5
 
 Make sure you upgrade _pip_
 ```console
-$ pip install -U pip  
+pip install -U pip  
 ```
 and then type the following command to **install psycopg**
 ```console
-$ pip install psycopg2
+pip install psycopg2
 ```
 
+## Working with PostgreSQL
 
+To interact with the database, you can either use the **GUI tool** for PostgreSQL _i.e._ [**_pgAdmin_**](https://www.pgadmin.org/) **_or_** you can use the **command-line tool**, _ie_ **SQL Shell (psql)**. Let me give you a quick demo on how things work PostgreSQL by using the command-line tool, which is installed with PostgreSQL. Just search for the **SQL Shell (psql)** app and open it.
+
+You will see something like this:
+```console
+Server [localhost]:
+```
+
+Press enter a few times, and you will see something like this: 
+```console
+Server [localhost]:
+Database [postgres]:            # Default Database 
+Port [5432]:                    # Default Port
+Username [postgres]:            # Default User
+Password for user postgres: 
+```
+
+Now, enter _the password that you have set during the installation of PostgreSQL_. If the **_password is incorrect_**, it will close the SQL Shell tool. So you have to again open it and repeat the steps until it ask for password. If the **_password is correct_**, you will see something like this:
+```console
+postgres=#
+```
+
+### Creating the Database
+To create a database, enter the following command, _without square brackets_:
+```console
+postgres=# CREATE DATABASE [myDatabaseName];
+```
+
+### Connecting the Database
+To **_connect the database to your local django app_**, just go to the [settings.py](#abc) file and in the **[Database]** Section, you will see something like this:
+```python
+
+# SQLite3 Database 
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+   }
+}
+```
+
+Change it to the following:
+
+```python
+# PostgreSQL Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myDatabaseName',                 # Default Database = postgres
+        'USER': 'myDatabaseUser',             # Default User = postgres
+        'PASSWORD': 'myPassword',             
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+```
+
+Thats's all, and you are set with the PostgreSQL.
 
 ---------------------------------------------------------------------------------------------------------
 
